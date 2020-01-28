@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>note converter</title>
+</head>
+<body>
+	<h1>The awesome note converter v.1.1 {{foo}}</h1>
+	
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+	<!-- form -->
+
+
+<form action="{% url 'note:convert' %}" method="post" id="rawNoteForm">
+{% csrf_token %}
+
+<textarea rows="4" cols="50" name="rawnote" form="rawNoteForm">
+{{rawnote}}</textarea>
+
+<br>
+<input type="submit" value="Convert!">
+</form>
+
+<!-- form ends -->
+
+<p>type in text to convert.</p>
+
+<h2>Converted Note</h2>
+<textarea rows="4" cols="50" name="convertedNote">
+{{converted_note}}</textarea>
+
+<br>
+<button onclick="location.href='/admin/note/abbreviation/'" type="button">
+Edit abbreviation List</button>
+
+
+<img src="{% static 'note/dingo.jpg' %}" alt="My image">
+
+</body>
+</html>
